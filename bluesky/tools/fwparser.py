@@ -19,6 +19,7 @@
 # by calling the parse(file) method
 
 import re
+import codecs
 
 # Define regular expressions for finding:
 # The types in a dataformat string
@@ -55,7 +56,7 @@ class FixedWidthParser(object):
     def parse(self, fname):
         line_re, dtypes = self.dformat[0]
         data            = []
-        with open(fname) as f:
+        with codecs.open(fname, 'r', 'iso-8859-1') as f:
             for lineno, line in enumerate(f):
                 match = line_re.match(line)
                 if match:
